@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Login() {
     let [email, setEmail] = useState("")
@@ -22,7 +22,16 @@ function Login() {
 
         } catch (error) {
             console.log(error)
-
+            toast.error(`Invalid Credentials`, {
+                position: "top-center",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              })
         }
     }
     return (
@@ -55,6 +64,7 @@ function Login() {
                     </Form>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     )
 }
